@@ -1,12 +1,9 @@
-# Repo name
+# TikTok Fan Automation CLI
 
-TikTok Fan Automation CLI
-
-brief desctiption of what it is
+A CLI app that downloads the latest TikTok videos from multiple public creators, deduplicates globally, and processes them end to end.
 
 ## details
 
-- CLI app that downloads the latest TikTok videos from multiple public creators, deduplicates globally, and processes them end to end.
 - Extracts keyframes (up to 50) from each downloaded video to give downstream caption generation visual context.
 - Calls an LLM to produce refreshed captions + hashtags, enforces credit lines, performs retries/backoff, and falls back to source captions on failure.
 - Uploads processed clips to a target TikTok account via the official API with privacy controls, logging, and error handling.
@@ -27,4 +24,4 @@ brief desctiption of what it is
 As you interact with the user and if you find anything that is out of the norm or an area where and the user went back-and-forth, or the user had to correct you, save your learnings below.
 
 ### learnings
-Let your learnings in bullets below
+- 
