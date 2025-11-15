@@ -25,6 +25,15 @@ export TIKTOK_ACCESS_TOKEN="your_upload_token"
 export OPENAI_API_KEY="your_openai_key"
 ```
 
+## Getting a TikTok Access Token
+- **Create/verify a TikTok for Developers account** at <https://developers.tiktok.com> and enroll the TikTok Business “Content Posting” product for your app.
+- **Register an application** in the developer portal, note the `client_key`, `client_secret`, and configure an OAuth redirect URL that you control (must match your `upload.callback_url` if you plan to use it).
+- **Add the destination TikTok Business account** (or Business Center) as an authorized account for the app so it can request the `video.upload`, `user.info.basic`, and `business.account.info` scopes.
+- **Run the OAuth flow**: send the user to `https://www.tiktok.com/v2/auth/authorize/?client_key=...&scope=video.upload,user.info.basic&redirect_uri=...&state=...&response_type=code`. After login/approval TikTok calls your redirect with `code=...`.
+- **Exchange the code for a token** by POSTing to `https://open.tiktokapis.com/v2/oauth/token/` with `client_key`, `client_secret`, `code`, and `grant_type=authorization_code`. The JSON response contains `access_token` and `refresh_token`.
+- **Refresh when needed** using the same endpoint with `grant_type=refresh_token` before expiry (typically every 24 hours unless you requested longer-lived tokens).
+- **Export the active token** into the environment where this CLI runs: `export TIKTOK_ACCESS_TOKEN="paste_access_token_here"`. Never commit the token to Git; rotate immediately if exposed.
+
 Execute a sync run:
 ```bash
 python -m tiktok_automation.cli sync --config config.yaml --verbose
