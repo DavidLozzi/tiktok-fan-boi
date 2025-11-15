@@ -1,0 +1,35 @@
+download:
+  usernames:
+    - example_user
+  max_videos_per_user: 2
+  concurrent_downloads: 3
+  watermark_free: true
+  request_timeout: 30
+  storage_path: data/downloads
+upload:
+  destination_account_id: null
+  privacy: public
+  callback_url: null
+  chunk_size_mb: 32
+  retry:
+    max_attempts: 5
+    backoff_seconds: 3
+llm:
+  provider: openai
+  model: gpt-4o-mini
+  temperature: 0.7
+  max_hashtags: 12
+  max_tokens: 600
+history:
+  path: data/processed_videos.jsonl
+  max_bytes: 10485760
+  keep_rotations: 5
+logging:
+  path: logs/app.log
+  level: INFO
+  max_bytes: 5242880
+  backup_count: 3
+storage:
+  temp_path: tmp
+  frames_path: tmp/frames
+
